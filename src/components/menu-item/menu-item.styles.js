@@ -2,16 +2,37 @@ import styled from "styled-components";
 
 export const MenuItem = styled.div`
   min-width: 30%;
+  position: relative;
   height: 240px;
   flex: 1 1 auto;
   display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
   text-transform: uppercase;
-  background-size: cover;
-  background-position: center;
+  cursor: pointer;
+
+  ::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: -1;
+    transform: scale(1.15);
+    transition: all 1s;
+    filter: blur(1px);
+  }
+
+  :hover:after {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 
   &:first-child {
     margin-right: 7.5px;
@@ -31,7 +52,7 @@ export const Content = styled.div`
   justify-content: center;
   border: 1px solid black;
   background-color: #fff;
-  opacity: 0.7;
+  opacity: 0.8;
 `;
 
 export const Title = styled.h1`

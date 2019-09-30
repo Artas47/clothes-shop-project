@@ -1,13 +1,15 @@
 import React from "react";
 import Homepage from "../pages/homepage/homepage";
 import Header from "./header/header";
+import { Route, Switch } from "react-router-dom";
 import "../App.scss";
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <Homepage />
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+      </Switch>
     </div>
   );
 };

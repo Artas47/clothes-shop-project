@@ -6,9 +6,15 @@ import * as S from "./directory.styles.js";
 const Directory = props => {
   return (
     <S.DirectoryMenu>
-      {props.sections.map(({ id, imageUrl, title, size }) => {
+      {props.sections.map(({ id, imageUrl, title, size, linkUrl }) => {
         return (
-          <MenuItem key={id} imageUrl={imageUrl} title={title} size={size} />
+          <MenuItem
+            key={id}
+            imageUrl={imageUrl}
+            title={title}
+            size={size}
+            linkUrl={linkUrl}
+          />
         );
       })}
     </S.DirectoryMenu>
