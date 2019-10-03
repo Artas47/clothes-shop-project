@@ -10,6 +10,7 @@ const CollectionPreview = ({ title, items }) => {
         {items.slice(0, 4).map(item => {
           return (
             <CollectionItem
+              key={item.id}
               id={item.id}
               imageUrl={item.imageUrl}
               name={item.name}

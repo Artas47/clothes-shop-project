@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
 import sections from "./sectionsReducer";
 import collections from "./collectionsReducer";
+import { reducer as formReducer } from "redux-form";
+import user from "./userReducer";
 
 export default combineReducers({
   sections: sections,
-  collections: collections
+  collections: collections,
+  form: formReducer,
+  user: user
 });

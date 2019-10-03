@@ -1,7 +1,6 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import * as S from "./shop.styles";
 import CollectionPreview from "../../components/collection-preview/collection-preview";
 
 const Shop = props => {

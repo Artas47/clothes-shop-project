@@ -6,6 +6,7 @@ export const CollectionPreview = styled.div`
   flex-direction: column;
 `;
 export const CollectionPreviewTitle = styled.div`
+  margin-top: 5rem;
   text-transform: uppercase;
   font-size: 5rem;
   margin-bottom: 2.5rem;

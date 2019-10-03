@@ -10,7 +10,7 @@ export const MenuItem = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 0.75rem 1.5rem;
+  margin: 1rem;
   text-transform: uppercase;
   cursor: pointer;
 

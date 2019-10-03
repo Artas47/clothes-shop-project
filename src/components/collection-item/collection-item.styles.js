@@ -10,6 +10,8 @@ export const CollectionItem = styled.div`
 export const CollectionItemFooter = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 2.5rem;
   margin: 0.7rem 0;
 `;
 
