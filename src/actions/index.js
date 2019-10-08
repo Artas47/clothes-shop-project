@@ -1,6 +1,6 @@
-export const fetchUser = user => {
+export const getUser = (userId, userData) => {
   return {
     type: "FETCH_USER",
-    payload: user
+    payload: { userId, ...userData }
   };
 };

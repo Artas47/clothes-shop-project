@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "./form-field.styles";
+import * as S from "./form-input.styles";
 
 const FormField = props => {
   return (

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./sign-in.styles";
 import { reduxForm } from "redux-form";
-import FormInput from "../form-input/form-field";
+import FormInput from "../form-input/form-input";
 import CustomButton from "../../components/custom-button/custom-button";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 
 const SignIn = props => {
   const { handleSubmit } = props;
-  const onSubmit = formValues => {};
+  const onSubmit = formValues => {
+    console.log("gfd");
+  };
   return (
     <S.SignIn>
       <h2>I already have an account</h2>
@@ -28,7 +31,7 @@ const SignIn = props => {
           htmlFor="password"
           text="Password"
         />
-        <CustomButton> Sign In </CustomButton>
+        <CustomButton type="submit"> Sign In </CustomButton>
         <CustomButton googleButton onClick={signInWithGoogle}>
           SIGN IN WITH GOOGLE
         </CustomButton>
@@ -37,6 +40,12 @@ const SignIn = props => {
   );
 };
 
-export default reduxForm({
-  form: "signIn"
-})(SignIn);
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(
+  reduxForm({
+    form: "signIn"
+  })(SignIn)
+);

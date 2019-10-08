@@ -5,21 +5,23 @@ import Shop from "./pages/shop/shop";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import { Route, Switch } from "react-router-dom";
 import "./App.scss";
-import { auth } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
-import { fetchUser } from "./actions/index.js";
-
-let unsubscribeFromAuth = null;
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { getUser } from "./actions/index.js";
 const App = props => {
   useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      props.fetchUser(user);
-      console.log(user);
+    console.log('fds')
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          props.getUser(snapShot.id, snapShot.data());
+        });
+      } else {
+        props.getUser(userAuth);
+      }
     });
-    return () => {
-      console.log("i did unmount");
-      unsubscribeFromAuth();
-    };
   }, []);
   return (
     <div>
@@ -35,5 +37,5 @@ const App = props => {
 
 export default connect(
   null,
-  { fetchUser }
+  { getUser }
 )(App);

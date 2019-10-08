@@ -11,7 +11,6 @@ export const CustomButton = styled.button`
   font-weight: 700;
   outline: none;
   border: none;
-  border-radius: 100px;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   :not(:last-child) {
     margin-right: 5rem;
