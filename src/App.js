@@ -3,23 +3,22 @@ import Homepage from "./pages/homepage/homepage";
 import Header from "./components/header/header";
 import Shop from "./pages/shop/shop";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { getUser } from "./actions/index.js";
+import { setUser } from "./actions/index.js";
 const App = props => {
   useEffect(() => {
-    console.log('fds')
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          props.getUser(snapShot.id, snapShot.data());
+          props.setUser(snapShot.id, snapShot.data());
         });
       } else {
-        props.getUser(userAuth);
+        props.setUser(userAuth);
       }
     });
   }, []);
@@ -29,13 +28,23 @@ const App = props => {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/shop" component={Shop} />
-        <Route exact path="/signin" component={SignInAndSignUp} />
+        <Route
+          exact
+          path="/signin"
+          render={() =>
+            props.user.userId ? <Redirect to="/" /> : <SignInAndSignUp />
+          }
+        />
       </Switch>
     </div>
   );
 };
 
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
 export default connect(
-  null,
-  { getUser }
+  mapStateToProps,
+  { setUser }
 )(App);

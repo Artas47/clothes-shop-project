@@ -1,6 +1,8 @@
-export const getUser = (userId, userData) => {
+import { SET_USER } from "./types";
+
+export const setUser = (userId, userData) => {
   return {
-    type: "FETCH_USER",
+    type: SET_USER,
     payload: { userId, ...userData }
   };
 };
