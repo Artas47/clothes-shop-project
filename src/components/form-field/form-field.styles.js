@@ -1,12 +1,6 @@
 import styled from "styled-components";
-import { Field } from "redux-form";
 
-export const FormField = styled.div`
-  margin: 5rem 0;
-`;
-
-export const StyledLabel = styled.label``;
-export const StyledField = styled(Field)`
+export const FormField = styled.input`
   display: block;
   border: none;
   font-size: 3rem;

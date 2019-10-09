@@ -1,31 +1,21 @@
 import React from "react";
-import FormField from "../form-input/form-input";
 import CustomButton from "../custom-button/custom-button";
-import { reduxForm } from "redux-form";
+import { reduxForm, Field } from "redux-form";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import * as S from "./sign-up.styles";
 import { connect } from "react-redux";
+import formField from "../form-field/form-field";
 
 const SignUp = props => {
   const { handleSubmit } = props;
   const onSubmit = async formValues => {
-    console.log(formValues);
     const { displayName } = formValues;
-    if (formValues.password !== formValues.confirmPassword) {
-      console.log("passwords not equal");
-      return;
-    }
-    if (!displayName) {
-      return;
-    }
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         formValues.email,
         formValues.password
       );
-
       await createUserProfileDocument(user, { displayName });
-      console.log(user);
     } catch (error) {
       console.log(error);
     }
@@ -34,43 +24,53 @@ const SignUp = props => {
     <S.SignUp>
       <h2>I don't have an account</h2>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormField
+      <S.StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <Field
           name="displayName"
-          component="input"
-          type="text"
-          htmlFor="displayName"
-          text="Display Name"
+          type="input"
+          component={formField}
+          label="Display Name"
         />
-        <FormField
-          name="email"
-          component="input"
-          type="email"
-          htmlFor="email"
-          text="Email"
-        />
-        <FormField
+        <Field name="email" type="email" component={formField} label="Email" />
+        <Field
           name="password"
-          component="input"
+          component={formField}
           type="password"
-          htmlFor="password"
-          text="Password"
+          label="Password"
         />
-        <FormField
+        <Field
           name="confirmPassword"
-          component="input"
+          component={formField}
           type="password"
-          htmlFor="confirmPassword"
-          text="Confirm Password"
+          label="Confirm Password"
         />
         <CustomButton type="submit">SIGN UP</CustomButton>
-      </form>
+      </S.StyledForm>
     </S.SignUp>
   );
 };
 
+const validate = formValues => {
+  const errors = {};
+  if (!formValues.displayName) {
+    errors.displayName = "You must enter a display name";
+  }
+  if (!formValues.email) {
+    errors.email = "You must enter an email";
+  }
+  if (!formValues.password) {
+    errors.password = "You must enter a password";
+  }
+  if (formValues.password !== formValues.confirmPassword) {
+    errors.password = "Passwords are not the same";
+  }
+  return errors;
+};
+
 export default connect()(
   reduxForm({
-    form: "signUp"
+    form: "signUp",
+    touchOnBlur: false,
+    validate: validate
   })(SignUp)
 );

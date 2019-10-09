@@ -5,4 +5,6 @@ export const SignIn = styled.div`
   width: 50rem;
 `;
 
-export const StyledForm = styled.form``;
+export const StyledForm = styled.form`
+  margin-top: 7rem;
+`;
