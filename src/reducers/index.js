@@ -10,5 +10,5 @@ export default combineReducers({
   collections: collections,
   form: formReducer,
   user: user,
-  cartShow: cart
+  cart: cart
 });

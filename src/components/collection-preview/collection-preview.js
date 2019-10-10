@@ -8,15 +8,7 @@ const CollectionPreview = ({ title, items }) => {
       <S.CollectionPreviewTitle>{title}</S.CollectionPreviewTitle>
       <S.Preview>
         {items.slice(0, 4).map(item => {
-          return (
-            <CollectionItem
-              key={item.id}
-              id={item.id}
-              imageUrl={item.imageUrl}
-              name={item.name}
-              price={item.price}
-            />
-          );
+          return <CollectionItem key={item.id} item={item} />;
         })}
       </S.Preview>
     </S.CollectionPreview>

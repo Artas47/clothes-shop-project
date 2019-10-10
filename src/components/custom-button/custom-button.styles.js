@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const CustomButton = styled.button`
   color: white;
   margin-top: 5rem;
   background-color: black;
   outline: none;
-  transition: all 0.5s;
+  transition: all 0.3s;
   width: 20rem;
   padding: 2.5rem 0;
   text-transform: uppercase;
@@ -24,4 +24,25 @@ export const CustomButton = styled.button`
   }
 
   background-color: ${props => (props.googleButton ? "green" : "")};
+
+  ${props =>
+    props.cartButton &&
+    css`
+      width: 80%;
+      background-color: white;
+      border: 2px solid black;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: black;
+      margin: 0;
+      bottom: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      display: none;
+      :hover {
+        background-color: black;
+        color: white;
+      }
+    `}
 `;

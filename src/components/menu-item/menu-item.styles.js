@@ -9,7 +9,6 @@ export const MenuItem = styled.div`
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
   margin: 1rem;
   text-transform: uppercase;
   cursor: pointer;
@@ -50,7 +49,6 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
   background-color: #fff;
   opacity: 0.8;
 `;

@@ -1,24 +1,28 @@
 import React from "react";
 import * as S from "./collection-item.styles";
+import CustomButton from "../custom-button/custom-button";
+import { connect } from "react-redux";
+import { addCartItem } from "../../actions/index";
 
 const CollectionItem = props => {
+  const { item } = props;
   return (
     <S.CollectionItem>
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundImage: `url(${props.imageUrl})`
-        }}
-      ></div>
+      <S.CollectionItemImg
+        style={{ backgroundImage: `url(${item.imageUrl})` }}
+      ></S.CollectionItemImg>
       <S.CollectionItemFooter>
-        <S.CollectionItemName>{props.name}</S.CollectionItemName>
-        <S.CollectionItemPrice>{props.price}</S.CollectionItemPrice>
+        <S.CollectionItemName>{item.name}</S.CollectionItemName>
+        <S.CollectionItemPrice>{item.price}</S.CollectionItemPrice>
       </S.CollectionItemFooter>
+      <CustomButton onClick={() => props.addCartItem(item)} cartButton>
+        ADD TO CART
+      </CustomButton>
     </S.CollectionItem>
   );
 };
 
-export default CollectionItem;
+export default connect(
+  null,
+  { addCartItem }
+)(CollectionItem);

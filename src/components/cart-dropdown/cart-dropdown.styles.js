@@ -19,5 +19,6 @@ export const CartItems = styled.div`
   height: 24rem;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
+  margin-bottom: 1.5rem;
 `;

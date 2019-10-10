@@ -26,13 +26,13 @@ const Header = props => {
         <S.StyledLink to={"/signin"}>SIGN IN</S.StyledLink>
       )}
       <CartIcon />
-      {props.cartShow ? <CartDropdown /> : ""}
+      {props.cart.hidden ? <CartDropdown /> : ""}
     </S.Header>
   );
 };
 
 const mapStateToProps = state => {
-  return { user: state.user, cartShow: state.cartShow };
+  return { user: state.user, cart: state.cart };
 };
 
 export default connect(mapStateToProps)(Header);
