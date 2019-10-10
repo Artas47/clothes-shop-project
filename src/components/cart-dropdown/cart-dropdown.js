@@ -10,7 +10,13 @@ const CartDropdown = props => {
       <S.CartItems>
         {props.cartItems.map(item => {
           return (
-            <CartItem key={item.id} name={item.name} imageUrl={item.imageUrl} />
+            <CartItem
+              key={item.id}
+              price={item.price}
+              name={item.name}
+              quantity={item.quantity}
+              imageUrl={item.imageUrl}
+            />
           );
         })}
       </S.CartItems>

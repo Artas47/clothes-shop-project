@@ -11,7 +11,7 @@ export const CartItem = styled.div`
 `;
 
 export const CartImg = styled.img`
-  width: 40%;
+  width: 30%;
   margin-right: 2rem;
 `;
 

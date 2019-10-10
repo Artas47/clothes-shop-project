@@ -6,21 +6,21 @@ const INITIAL_STATE = {
   cartItems: []
 };
 
-// export const addItemToCart = (cartItems, cartItemToAdd) => {
-//   const existingCartItem = cartItems.find(
-//     cartItem => cartItem.id === cartItemToAdd.id
-//   );
+export const addItemToCart = (cartItems, cartItemToAdd) => {
+  const existingCartItem = cartItems.find(
+    cartItem => cartItem.id === cartItemToAdd.id
+  );
 
-//   if (existingCartItem) {
-//     return cartItems.map(cartItem =>
-//       cartItem.id === cartItemToAdd.id
-//         ? { ...cartItem, quantity: cartItem.quantity + 1 }
-//         : cartItem
-//     );
-//   }
+  if (existingCartItem) {
+    return cartItems.map(cartItem =>
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+  }
 
-//   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
-// };
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_CART_ITEM:
       return {
         ...state,
-        cartItems: { ...state.cartItems, ..._.mapKeys(action.payload, "id") }
+        cartItems: addItemToCart(state.cartItems, action.payload)
       };
     default:
       return state;

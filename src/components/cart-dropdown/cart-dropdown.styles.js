@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const CartDropdown = styled.div`
   position: absolute;
-  width: 27rem;
-  height: 35rem;
+  width: 32rem;
+  height: 40rem;
   display: flex;
   flex-direction: column;
   align-items: center;
