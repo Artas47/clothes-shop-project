@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
+import { getUser } from "../../selectors/user.selector";
+import { getCartHidden } from "../../selectors/cart.selector";
 
 const Header = props => {
   return (
@@ -26,13 +28,13 @@ const Header = props => {
         <S.StyledLink to={"/signin"}>SIGN IN</S.StyledLink>
       )}
       <CartIcon />
-      {props.cart.hidden ? <CartDropdown /> : ""}
+      {props.cartHidden ? <CartDropdown /> : ""}
     </S.Header>
   );
 };
 
 const mapStateToProps = state => {
-  return { user: state.user, cart: state.cart };
+  return { user: getUser(state), cartHidden: getCartHidden(state) };
 };
 
 export default connect(mapStateToProps)(Header);

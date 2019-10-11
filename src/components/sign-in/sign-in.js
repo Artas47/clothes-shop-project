@@ -6,6 +6,7 @@ import { signInWithGoogle } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.utils";
 import formField from "../form-field/form-field";
+import { getUser } from "../../selectors/user.selector";
 
 const SignIn = props => {
   const { handleSubmit } = props;
@@ -42,7 +43,7 @@ const SignIn = props => {
 };
 
 const mapStateToProps = state => {
-  return { user: state.user };
+  return { user: getUser(state) };
 };
 
 const validate = formValues => {
