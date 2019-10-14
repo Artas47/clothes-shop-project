@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
 export const Header = styled.div`
-  width: 100%;
   font-size: 3rem;
   padding: 2rem 0;
   display: flex;

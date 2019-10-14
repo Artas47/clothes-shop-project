@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "./sign-in.styles";
 import { reduxForm, Field } from "redux-form";
 import CustomButton from "../../components/custom-button/custom-button";

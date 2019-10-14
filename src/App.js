@@ -11,16 +11,17 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { getUser } from "./selectors/user.selector";
 import { setUser } from "./actions/index.js";
 const App = props => {
+  const { setUser } = props;
   useEffect(() => {
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          props.setUser(snapShot.id, snapShot.data());
+          setUser(snapShot.id, snapShot.data());
         });
       } else {
-        props.setUser(userAuth);
+        setUser(userAuth);
       }
     });
   }, []);
