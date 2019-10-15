@@ -5,6 +5,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 import reducers from "./reducers";
 
@@ -13,11 +15,14 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(reduxThunk))
 );
+const persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.querySelector("#root")
