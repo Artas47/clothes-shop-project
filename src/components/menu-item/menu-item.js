@@ -19,7 +19,7 @@ const MenuItem = ({
     }
   `;
   return (
-    <MenuItem onClick={() => history.push(`/${linkUrl}`)}>
+    <MenuItem onClick={() => history.push(`/shop/${linkUrl}`)}>
       <S.Content>
         <S.Title>{title}</S.Title>
         <S.Subtitle>SHOP NOW</S.Subtitle>
