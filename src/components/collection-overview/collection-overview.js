@@ -13,8 +13,8 @@ const CollectionOverview = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return { collections: getCollections(state) };
+const mapStateToProps = (state, ownProps) => {
+  return { collections: Object.values(getCollections(state, ownProps)) };
 };
 
 export default connect(mapStateToProps)(CollectionOverview);

@@ -5,9 +5,9 @@ export const Collection = styled.div`
 `;
 
 export const CollectionItems = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(20rem, 1fr));
+  grid-gap: 3rem;
 `;
 
 export const CollectionTitle = styled.h2`

@@ -10,7 +10,6 @@ const Collection = ({ collection }) => {
   }
   return (
     <S.Collection>
-      {console.log(collection)}
       <S.CollectionTitle>{collection.title}</S.CollectionTitle>
       <S.CollectionItems>
         {collection.items.map(item => {

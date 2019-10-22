@@ -8,7 +8,7 @@ export const CollectionItemImg = styled.div`
   background-position: center;
 `;
 export const CollectionItem = styled.div`
-  width: 22%;
+  width: 22vw;
   height: 50rem;
   display: flex;
   position: relative;

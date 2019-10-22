@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 
 export const Header = styled.div`
   font-size: 3rem;
+  height: 10rem;
   padding: 2rem 0;
   display: flex;
   justify-content: space-between;
