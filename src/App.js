@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { getUser } from "./selectors/user.selector";
 import { setUser } from "./actions/index.js";
+import { getCartItems } from "./selectors/cart.selector";
 const App = props => {
   const { setUser } = props;
   useEffect(() => {
@@ -38,14 +39,20 @@ const App = props => {
             props.user.userId ? <Redirect to="/" /> : <SignInAndSignUp />
           }
         />
-        <Route exact path="/checkout" component={Checkout} />
+        <Route
+          exact
+          path="/checkout"
+          render={() => {
+            return props.cartItems.length ? <Checkout /> : <Redirect to="/" />;
+          }}
+        />
       </Switch>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return { user: getUser(state) };
+  return { user: getUser(state), cartItems: getCartItems(state) };
 };
 
 export default connect(

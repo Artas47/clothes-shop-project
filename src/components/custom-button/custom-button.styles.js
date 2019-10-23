@@ -45,4 +45,15 @@ export const CustomButton = styled.button`
         color: white;
       }
     `}
+
+  ${props =>
+    props.disabled &&
+    css`
+      background-color: grey;
+      :hover {
+        background-color: grey;
+        color: white;
+        border: 3px solid white;
+      }
+    `}
 `;

@@ -28,6 +28,7 @@ const CartDropdown = props => {
         )}
       </S.CartItems>
       <CustomButton
+        disabled={props.cartItems.length ? false : true}
         onClick={() => {
           props.history.push("/checkout");
           props.toggleCart();
