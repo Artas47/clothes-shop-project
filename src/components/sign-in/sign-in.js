@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./sign-in.styles";
 import { reduxForm, Field } from "redux-form";
-import CustomButton from "../../components/custom-button/custom-button";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.utils";
@@ -33,10 +32,10 @@ const SignIn = props => {
           component={formField}
           label="Password"
         />
-        <CustomButton type="submit"> Sign In </CustomButton>
-        <CustomButton googleButton onClick={signInWithGoogle}>
+        <S.FormCustomButton type="submit"> Sign In </S.FormCustomButton>
+        <S.FormCustomButton googleButton onClick={signInWithGoogle}>
           SIGN IN WITH GOOGLE
-        </CustomButton>
+        </S.FormCustomButton>
       </S.StyledForm>
     </S.SignIn>
   );

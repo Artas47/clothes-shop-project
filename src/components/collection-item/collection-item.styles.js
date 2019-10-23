@@ -14,6 +14,19 @@ export const CollectionItem = styled.div`
   position: relative;
   flex-direction: column;
   transition: all 0.2s;
+
+  @media only screen and (max-width: 1600px) {
+    margin: 1rem;
+    width: 20vw;
+  }
+  @media only screen and (max-width: 900px) {
+    width: 40vw;
+  }
+  @media only screen and (max-width: 550px) {
+    width: 80vw;
+    height: 40rem;
+  }
+
   :hover {
     opacity: 0.8;
     ${CustomButton} {

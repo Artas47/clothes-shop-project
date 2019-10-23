@@ -2,16 +2,20 @@ import styled from "styled-components";
 
 export const MenuItem = styled.div`
   min-width: 30%;
+  display: flex;
   position: relative;
   height: 25rem;
   flex: 1 1 auto;
-  display: flex;
   overflow: hidden;
   align-items: center;
   justify-content: center;
   margin: 1rem;
   text-transform: uppercase;
   cursor: pointer;
+
+  @media only screen and (max-width: 700px) {
+    min-width: 100%;
+  }
 
   ::after {
     content: "";

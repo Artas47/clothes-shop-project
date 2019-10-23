@@ -44,7 +44,7 @@ const SignUp = props => {
           type="password"
           label="Confirm Password"
         />
-        <CustomButton type="submit">SIGN UP</CustomButton>
+        <S.FormCustomButton type="submit">SIGN UP</S.FormCustomButton>
       </S.StyledForm>
     </S.SignUp>
   );

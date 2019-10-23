@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const CheckoutItem = styled.div`
-  font-size: 3rem;
   width: 100%;
   display: grid;
   grid-template-columns: 25rem repeat(4, 1fr);
   justify-items: center;
   align-items: center;
+  @media only screen and (max-width: 1300px) {
+    grid-template-columns: 18rem repeat(4, 1fr);
+  }
   :not(:last-child) {
     margin: 3rem 0;
   }
@@ -29,6 +31,10 @@ export const CheckoutItemImg = styled.img`
     width: 17rem;
     height: 20rem;
   }
+  @media only screen and (max-width: 700px) {
+    width: 14rem;
+    height: 17rem;
+  }
 `;
 export const CheckoutItemDescription = styled.div`
   grid-column: 2/3;
@@ -49,7 +55,7 @@ export const CheckoutItemRemove = styled.div`
 `;
 
 export const CheckoutItemArrow = styled.div`
-  font-size: 2rem;
   margin: 0 0.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
 `;

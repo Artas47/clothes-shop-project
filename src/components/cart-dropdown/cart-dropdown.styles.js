@@ -13,6 +13,15 @@ export const CartDropdown = styled.div`
   top: 10rem;
   right: 7rem;
   z-index: 5;
+  @media only screen and (max-width: 1200px) {
+    right: 5rem;
+  }
+  @media only screen and (max-width: 850px) {
+    right: 3rem;
+  }
+  @media only screen and (max-width: 450px) {
+    right: 1.5rem;
+  }
 `;
 
 export const CartItems = styled.div`
