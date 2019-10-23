@@ -5,6 +5,7 @@ export const Checkout = styled.div`
   width: 80%;
   display: grid;
   justify-content: center;
+  text-align: center;
 `;
 
 export const CheckoutTotalPrice = styled.h2`
@@ -17,3 +18,8 @@ export const CheckoutTotalPrice = styled.h2`
 `;
 
 export const CheckoutItems = styled.div``;
+
+export const CheckoutWarning = styled.div`
+  font-size: 2rem;
+  color: red;
+`;
