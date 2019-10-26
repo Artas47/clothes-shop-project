@@ -14,6 +14,7 @@ const Checkout = props => {
         {props.cartItems.map(item => {
           return (
             <CheckoutItem
+              key={item.id}
               item={item}
               imageUrl={item.imageUrl}
               price={item.price}

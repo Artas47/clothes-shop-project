@@ -33,10 +33,10 @@ const SignIn = props => {
           label="Password"
         />
         <S.FormCustomButton type="submit"> Sign In </S.FormCustomButton>
-        <S.FormCustomButton googleButton onClick={signInWithGoogle}>
-          SIGN IN WITH GOOGLE
-        </S.FormCustomButton>
       </S.StyledForm>
+      <S.FormCustomButton googleButton onClick={signInWithGoogle}>
+        SIGN IN WITH GOOGLE
+      </S.FormCustomButton>
     </S.SignIn>
   );
 };

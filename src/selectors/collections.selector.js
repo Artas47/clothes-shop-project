@@ -10,5 +10,5 @@ const selectCollections = state => state.collections;
 
 export const getCollections = createSelector(
   [selectCollections],
-  collections => collections
+  collections => (collections ? collections : [])
 );

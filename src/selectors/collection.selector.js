@@ -5,5 +5,5 @@ const selectCollection = (state, ownProps) =>
 
 export const getCollection = createSelector(
   [selectCollection],
-  collection => collection
+  collection => (collection ? collection : null)
 );

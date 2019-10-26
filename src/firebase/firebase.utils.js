@@ -13,11 +13,11 @@ const config = {
   measurementId: "G-TMS2KWJB2D"
 };
 
+firebase.initializeApp(config);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
@@ -39,7 +39,31 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-firebase.initializeApp(config);
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  Object.values(objectsToAdd).forEach(obj => {
+    console.log(obj);
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
+
+// export const covertCollectionsSnapshotToMap = collections => {
+//   const transformedCollection = collections.docs.map(doc => {
+//     const { title, items } = doc.data();
+
+//     return {
+//       ...doc.data()
+//     };
+//   });
+//   return transformedCollection;
+// };
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });

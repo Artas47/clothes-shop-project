@@ -1,5 +1,4 @@
 import React from "react";
-import CustomButton from "../custom-button/custom-button";
 import { reduxForm, Field } from "redux-form";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import * as S from "./sign-up.styles";
