@@ -38,17 +38,17 @@ export const MenuItem = styled.div`
   }
 
   &:first-child {
-    margin-right: 7.5px;
+    margin-right: 0.75rem;
   }
 
   &:last-child {
-    margin-left: 7.5px;
+    margin-left: 0.75rem;
   }
 `;
 
 export const Content = styled.div`
-  height: 90px;
-  padding: 0 25px;
+  height: 9rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

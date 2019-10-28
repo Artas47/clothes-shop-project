@@ -6,7 +6,7 @@ import * as S from "./collection.styles";
 
 const Collection = ({ collection }) => {
   if (!collection) {
-    return <div>page not found</div>;
+    return <S.CollectionNotFound>Page not found...</S.CollectionNotFound>;
   }
   return (
     <S.Collection>
@@ -21,7 +21,14 @@ const Collection = ({ collection }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return { collection: getCollection(state, ownProps) };
+  if (!state.collections) {
+    return {
+      collection: null
+    };
+  }
+  return {
+    collection: getCollection(state, ownProps)
+  };
 };
 
 export default connect(mapStateToProps)(Collection);

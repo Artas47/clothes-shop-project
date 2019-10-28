@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import _ from "lodash";
 import "firebase/firestore";
 import "firebase/auth";
 
@@ -54,16 +55,14 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-// export const covertCollectionsSnapshotToMap = collections => {
-//   const transformedCollection = collections.docs.map(doc => {
-//     const { title, items } = doc.data();
-
-//     return {
-//       ...doc.data()
-//     };
-//   });
-//   return transformedCollection;
-// };
+export const covertCollectionsSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    return {
+      ...doc.data()
+    };
+  });
+  return _.mapKeys(transformedCollection, "routeName");
+};
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });

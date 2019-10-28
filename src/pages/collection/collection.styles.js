@@ -6,6 +6,11 @@ export const Collection = styled.div`
   flex-direction: column;
 `;
 
+export const CollectionNotFound = styled.div`
+  font-size: 5rem;
+  text-align: center;
+`;
+
 export const CollectionItems = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(20rem, 1fr));

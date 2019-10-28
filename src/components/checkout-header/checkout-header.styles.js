@@ -9,10 +9,10 @@ export const CheckoutHeader = styled.div`
 export const CheckoutHeaderList = styled.ul`
   list-style: none;
   display: grid;
-  grid-template-columns: 25rem repeat(4, 1fr);
+  grid-template-columns: 25rem repeat(4, minmax(10rem, 20rem));
   justify-items: center;
   @media only screen and (max-width: 1300px) {
-    grid-template-columns: 18rem repeat(4, 1fr);
+    grid-template-columns: 15rem repeat(4, minmax(5rem, 1fr));
   }
 `;
 export const CheckoutHeaderListItem = styled.li``;

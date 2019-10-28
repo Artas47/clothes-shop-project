@@ -43,18 +43,25 @@ export const removeCartItem = item => {
   };
 };
 
-export const getCollections = () => async dispatch => {
-  const collectionRef = firestore.collection("collections");
-  const collectionSnapshot = await collectionRef.get();
-
-  // collectionRef.onSnapshot(async snapshot => {
-  //   covertCollectionsSnapshotToMap(snapshot);
-  // });
-
-  dispatch({
-    type: "GET_COLLECTIONS",
-    payload: {
-      ...collectionSnapshot.docs.map(collection => collection.data())
-    }
-  });
+export const fetchCollections = collections => {
+  return {
+    type: "FETCH_COLLECTIONS",
+    payload: collections
+  };
 };
+
+// export const getCollections = () => async dispatch => {
+//   const collectionRef = firestore.collection("collections");
+//   const collectionSnapshot = await collectionRef.get();
+
+//   // collectionRef.onSnapshot(async snapshot => {
+//   //   covertCollectionsSnapshotToMap(snapshot);
+//   // });
+
+//   dispatch({
+//     type: "GET_COLLECTIONS",
+//     payload: {
+//       ...collectionSnapshot.docs.map(collection => collection.data())
+//     }
+//   });
+// };

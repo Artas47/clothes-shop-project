@@ -1,11 +1,16 @@
 import React from "react";
 import * as S from "./collection-preview.styles";
+import { Link } from "react-router-dom";
 import CollectionItem from "../collection-item/collection-item";
 
 const CollectionPreview = ({ title, items }) => {
   return (
     <S.CollectionPreview>
-      <S.CollectionPreviewTitle>{title}</S.CollectionPreviewTitle>
+      <S.CollectionPreviewTitle>
+        <S.CollectionPreviewLink to={`/shop/${title.toLowerCase()}`}>
+          {title}
+        </S.CollectionPreviewLink>
+      </S.CollectionPreviewTitle>
       <S.Preview>
         {items.slice(0, 4).map(item => {
           return <CollectionItem key={item.id} item={item} />;
