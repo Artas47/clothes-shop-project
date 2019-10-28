@@ -19,11 +19,13 @@ export const CollectionPreviewTitle = styled.div`
 `;
 
 export const Preview = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(20rem, 1fr));
+  grid-gap: 3rem;
 
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
   }
 `;

@@ -51,6 +51,7 @@ export const CheckoutItemPrice = styled.div`
   }
 `;
 export const CheckoutItemRemove = styled.div`
+  cursor: pointer;
   grid-column: 5/6;
 `;
 
