@@ -6,10 +6,15 @@ import * as S from "./collection.styles";
 
 const Collection = ({ collection }) => {
   if (!collection) {
-    return <S.CollectionNotFound>Page not found...</S.CollectionNotFound>;
+    return (
+      <S.CollectionNotFound>
+        Page not found...{console.log("coll", collection)}
+      </S.CollectionNotFound>
+    );
   }
   return (
     <S.Collection>
+      {console.log("col", collection)}
       <S.CollectionTitle>{collection.title}</S.CollectionTitle>
       <S.CollectionItems>
         {collection.items.map(item => {
@@ -21,10 +26,8 @@ const Collection = ({ collection }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  if (!state.collections) {
-    return {
-      collection: null
-    };
+  if (!state.shopData.collections) {
+    return {};
   }
   return {
     collection: getCollection(state, ownProps)

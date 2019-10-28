@@ -5,25 +5,15 @@ import Collection from "../collection/collection";
 import WithSpinner from "../../components/with-spinner/with-spinner";
 import * as S from "./shop.styles";
 import { connect } from "react-redux";
-import {
-  firestore,
-  covertCollectionsSnapshotToMap
-} from "../../firebase/firebase.utils";
-import { fetchCollections } from "../../actions/index";
+import { fetchCollectionsStartAsync } from "../../actions/index";
+import { getIsCollectionFetching } from "../../selectors/collections.selector";
 
 const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
 const CollectionWithSpinner = WithSpinner(Collection);
 
-const Shop = ({ match, fetchCollections }) => {
-  const [loading, setLoading] = useState(true);
-  let unsubscribeFromSnapshot = null;
+const Shop = ({ match, fetchCollectionsStartAsync, isLoading }) => {
   useEffect(() => {
-    const collectionRef = firestore.collection("collections");
-    unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-      const collectionsMap = covertCollectionsSnapshotToMap(snapshot);
-      fetchCollections(collectionsMap);
-      setLoading(false);
-    });
+    fetchCollectionsStartAsync();
   }, []);
   return (
     <S.Shop>
@@ -31,20 +21,24 @@ const Shop = ({ match, fetchCollections }) => {
         exact
         path={`${match.path}`}
         render={props => (
-          <CollectionOverviewWithSpinner isLoading={loading} {...props} />
+          <CollectionOverviewWithSpinner isLoading={isLoading} {...props} />
         )}
       />
       <Route
         path={`${match.path}/:collectionTitle`}
         render={props => (
-          <CollectionWithSpinner isLoading={loading} {...props} />
+          <CollectionWithSpinner isLoading={isLoading} {...props} />
         )}
       />
     </S.Shop>
   );
 };
 
+const mapStateToProps = state => {
+  return { isLoading: getIsCollectionFetching(state) };
+};
+
 export default connect(
-  null,
-  { fetchCollections }
+  mapStateToProps,
+  { fetchCollectionsStartAsync }
 )(Shop);

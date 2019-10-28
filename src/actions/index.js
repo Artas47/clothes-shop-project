@@ -3,11 +3,16 @@ import {
   TOGGLE_CART,
   ADD_CART_ITEM,
   CLEAR_CART_ITEM,
-  REMOVE_CART_ITEM
+  REMOVE_CART_ITEM,
+  FETCH_COLLECTIONS_FAILURE,
+  FETCH_COLLECTIONS_START,
+  FETCH_COLLECTIONS_SUCCESS
 } from "./types";
 
-import { firestore } from "../firebase/firebase.utils";
-import { covertCollectionsSnapshotToMap } from "../firebase/firebase.utils";
+import {
+  firestore,
+  covertCollectionsSnapshotToMap
+} from "../firebase/firebase.utils";
 
 export const setUser = (userId, userData) => {
   return {
@@ -43,11 +48,42 @@ export const removeCartItem = item => {
   };
 };
 
-export const fetchCollections = collections => {
+export const changeLoading = () => {
   return {
-    type: "FETCH_COLLECTIONS",
-    payload: collections
+    type: "CHANGE_LOADING"
   };
+};
+
+export const fetchCollectionsStart = () => {
+  return {
+    type: FETCH_COLLECTIONS_START
+  };
+};
+
+export const fetchCollectionsSuccess = collectionsMap => {
+  return {
+    type: FETCH_COLLECTIONS_SUCCESS,
+    payload: collectionsMap
+  };
+};
+
+export const fetchCollectionsFailure = errorMessege => {
+  return {
+    type: FETCH_COLLECTIONS_FAILURE,
+    payload: errorMessege
+  };
+};
+
+export const fetchCollectionsStartAsync = () => async dispatch => {
+  const collectionRef = firestore.collection("collections");
+  dispatch(fetchCollectionsStart());
+  collectionRef
+    .get()
+    .then(snapshot => {
+      const collectionsMap = covertCollectionsSnapshotToMap(snapshot);
+      dispatch(fetchCollectionsSuccess(collectionsMap));
+    })
+    .catch(error => dispatch(fetchCollectionsFailure(error)));
 };
 
 // export const getCollections = () => async dispatch => {
