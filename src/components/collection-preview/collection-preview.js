@@ -1,6 +1,5 @@
 import React from "react";
 import * as S from "./collection-preview.styles";
-import { Link } from "react-router-dom";
 import CollectionItem from "../collection-item/collection-item";
 
 const CollectionPreview = ({ title, items }) => {

@@ -11,7 +11,7 @@ import isLoading from "./loadingReducer";
 const persistConfig = {
   key: "root",
   storage: storage,
-  whiteList: ["cart"]
+  whitelist: ["cart"]
 };
 
 const rootReducer = combineReducers({

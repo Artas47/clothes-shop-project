@@ -18,3 +18,8 @@ export const getIsCollectionFetching = createSelector(
   [selectIsFetching],
   isFetching => isFetching
 );
+
+export const getIsCollectionsLoaded = createSelector(
+  [selectCollections],
+  collections => !!collections
+);

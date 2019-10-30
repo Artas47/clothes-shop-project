@@ -14,7 +14,6 @@ const Collection = ({ collection }) => {
   }
   return (
     <S.Collection>
-      {console.log("col", collection)}
       <S.CollectionTitle>{collection.title}</S.CollectionTitle>
       <S.CollectionItems>
         {collection.items.map(item => {
@@ -26,11 +25,8 @@ const Collection = ({ collection }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  if (!state.shopData.collections) {
-    return {};
-  }
   return {
-    collection: getCollection(state, ownProps)
+    collection: getCollection(ownProps.match.params.collectionTitle)(state)
   };
 };
 

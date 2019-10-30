@@ -1,10 +1,11 @@
 import { createSelector } from "reselect";
 
-const selectCollection = (state, ownProps) => {
-  return state.shopData.collections[ownProps.match.params.collectionTitle];
+const selectCollections = state => {
+  return state.shopData.collections;
 };
 
-export const getCollection = createSelector(
-  [selectCollection],
-  collection => collection
-);
+export const getCollection = collectionUrlParam =>
+  createSelector(
+    [selectCollections],
+    collection => (collection ? collection[collectionUrlParam] : null)
+  );
