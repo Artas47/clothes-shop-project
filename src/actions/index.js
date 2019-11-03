@@ -6,18 +6,26 @@ import {
   REMOVE_CART_ITEM,
   FETCH_COLLECTIONS_FAILURE,
   FETCH_COLLECTIONS_START,
-  FETCH_COLLECTIONS_SUCCESS
+  FETCH_COLLECTIONS_SUCCESS,
+  GOOGLE_SIGN_IN_START,
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAILURE,
+  EMAIL_SIGN_IN_START,
+  CHECK_USER_SESSION,
+  SIGN_OUT_START,
+  SIGN_OUT_FAILURE,
+  SIGN_OUT_SUCCESS,
+  CLEAR_CART_ITEMS,
+  SIGN_UP_START,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE
 } from "./types";
-
-import {
-  firestore,
-  covertCollectionsSnapshotToMap
-} from "../firebase/firebase.utils";
 
 export const setUser = (userId, userData) => {
   return {
     type: SET_USER,
-    payload: { userId, ...userData }
+    payload: userId,
+    ...userData
   };
 };
 
@@ -74,30 +82,68 @@ export const fetchCollectionsFailure = errorMessege => {
   };
 };
 
-export const fetchCollectionsStartAsync = () => async dispatch => {
-  const collectionRef = firestore.collection("collections");
-  dispatch(fetchCollectionsStart());
-  collectionRef
-    .get()
-    .then(snapshot => {
-      const collectionsMap = covertCollectionsSnapshotToMap(snapshot);
-      dispatch(fetchCollectionsSuccess(collectionsMap));
-    })
-    .catch(error => dispatch(fetchCollectionsFailure(error)));
+export const googleSignInStart = () => {
+  return {
+    type: GOOGLE_SIGN_IN_START
+  };
 };
 
-// export const getCollections = () => async dispatch => {
-//   const collectionRef = firestore.collection("collections");
-//   const collectionSnapshot = await collectionRef.get();
+export const signInSuccess = user => {
+  return {
+    type: SIGN_IN_SUCCESS,
+    payload: user
+  };
+};
 
-//   // collectionRef.onSnapshot(async snapshot => {
-//   //   covertCollectionsSnapshotToMap(snapshot);
-//   // });
+export const signInFailure = error => {
+  return {
+    type: SIGN_IN_FAILURE,
+    payload: error
+  };
+};
 
-//   dispatch({
-//     type: "GET_COLLECTIONS",
-//     payload: {
-//       ...collectionSnapshot.docs.map(collection => collection.data())
-//     }
-//   });
-// };
+export const emailSignInStart = emailAndPassword => {
+  return {
+    type: EMAIL_SIGN_IN_START,
+    payload: emailAndPassword
+  };
+};
+
+export const signOutStart = () => {
+  return {
+    type: SIGN_OUT_START
+  };
+};
+
+export const signOutSuccess = () => {
+  return {
+    type: SIGN_OUT_SUCCESS
+  };
+};
+
+export const signOutFailure = error => {
+  return {
+    type: SIGN_OUT_FAILURE,
+    payload: error
+  };
+};
+
+export const checkUserSession = () => {
+  return { type: CHECK_USER_SESSION };
+};
+
+export const clearCartItems = () => {
+  return { type: CLEAR_CART_ITEMS };
+};
+
+export const signUpStart = formValues => {
+  return { type: SIGN_UP_START, payload: formValues };
+};
+
+export const signUpSuccess = ({ user, additionalData }) => {
+  return { type: SIGN_UP_SUCCESS, payload: { user, additionalData } };
+};
+
+export const signUpFailure = error => {
+  return { type: SIGN_UP_FAILURE, payload: error };
+};

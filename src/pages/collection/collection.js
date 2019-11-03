@@ -6,11 +6,7 @@ import * as S from "./collection.styles";
 
 const Collection = ({ collection }) => {
   if (!collection) {
-    return (
-      <S.CollectionNotFound>
-        Page not found...{console.log("coll", collection)}
-      </S.CollectionNotFound>
-    );
+    return <S.CollectionNotFound>Page not found...</S.CollectionNotFound>;
   }
   return (
     <S.Collection>

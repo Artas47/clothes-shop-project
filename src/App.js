@@ -7,25 +7,14 @@ import Checkout from "./pages/checkout/checkout";
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.scss";
 import { connect } from "react-redux";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { getUser } from "./selectors/user.selector";
-import { setUser } from "./actions/index.js";
 import { getCartItems } from "./selectors/cart.selector";
+import { checkUserSession } from "./actions/index";
 
 const App = props => {
-  const { setUser } = props;
   useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot(snapShot => {
-          setUser(snapShot.id, snapShot.data());
-        });
-      } else {
-        setUser(userAuth);
-      }
-    });
+    const { checkUserSession } = props;
+    checkUserSession();
   }, []);
   return (
     <div>
@@ -37,7 +26,7 @@ const App = props => {
           exact
           path="/signin"
           render={() =>
-            props.user.userId ? <Redirect to="/" /> : <SignInAndSignUp />
+            props.user.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
           }
         />
         <Route
@@ -61,5 +50,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setUser }
+  { checkUserSession }
 )(App);

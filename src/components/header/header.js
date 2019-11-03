@@ -1,11 +1,11 @@
 import React from "react";
 import * as S from "./header.styles";
 import { connect } from "react-redux";
-import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
 import { getUser } from "../../selectors/user.selector";
 import { getCartHidden } from "../../selectors/cart.selector";
+import { signOutStart } from "../../actions/index";
 
 const Header = props => {
   return (
@@ -15,11 +15,11 @@ const Header = props => {
       </S.StyledLink>
       <S.StyledLink to="/shop">SHOP</S.StyledLink>
       <S.StyledLink to="/contact">CONTACT</S.StyledLink>
-      {props.user.email ? (
+      {props.user.currentUser ? (
         <S.StyledLink
           to="#"
           onClick={() => {
-            auth.signOut();
+            props.signOutStart();
           }}
         >
           SIGN OUT
@@ -37,4 +37,7 @@ const mapStateToProps = state => {
   return { user: getUser(state), cartHidden: getCartHidden(state) };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps,
+  { signOutStart }
+)(Header);

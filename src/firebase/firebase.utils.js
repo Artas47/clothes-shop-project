@@ -48,7 +48,6 @@ export const addCollectionAndDocuments = async (
 
   const batch = firestore.batch();
   Object.values(objectsToAdd).forEach(obj => {
-    console.log(obj);
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
   });
@@ -64,11 +63,20 @@ export const covertCollectionsSnapshotToMap = collections => {
   return _.mapKeys(transformedCollection, "routeName");
 };
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => {
-  return auth.signInWithPopup(provider);
+  return auth.signInWithPopup(googleProvider);
 };
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

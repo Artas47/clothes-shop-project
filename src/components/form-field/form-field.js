@@ -12,7 +12,7 @@ const FormField = props => {
     <div>
       <label>{label}</label>
       <div>
-        <S.FormField {...input} type={type} />
+        <S.FormField autoComplete="off" {...input} type={type} />
         {touched && error ? <span style={{ color: "red" }}>{error}</span> : ""}
       </div>
     </div>

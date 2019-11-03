@@ -2,7 +2,8 @@ import {
   TOGGLE_CART,
   ADD_CART_ITEM,
   CLEAR_CART_ITEM,
-  REMOVE_CART_ITEM
+  REMOVE_CART_ITEM,
+  CLEAR_CART_ITEMS
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -60,6 +61,8 @@ export default (state = INITIAL_STATE, action) => {
           return item.id !== action.payload.id;
         })
       };
+    case CLEAR_CART_ITEMS:
+      return INITIAL_STATE;
     case REMOVE_CART_ITEM:
       return {
         ...state,

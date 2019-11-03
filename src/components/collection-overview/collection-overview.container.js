@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { compose } from "redux";
 
 import { getIsCollectionFetching } from "../../selectors/collections.selector";
 

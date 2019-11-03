@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import * as S from "./shop.styles";
 import { connect } from "react-redux";
-import { fetchCollectionsStartAsync } from "../../actions/index";
+import { fetchCollectionsStart } from "../../actions/index";
 
 import CollectionOverviewContainer from "../../components/collection-overview/collection-overview.container";
 import CollectionContainer from "../../pages/collection/collection.container";
 
-const Shop = ({ match, fetchCollectionsStartAsync }) => {
+const Shop = ({ match, fetchCollectionsStart }) => {
   useEffect(() => {
-    fetchCollectionsStartAsync();
+    fetchCollectionsStart();
   }, []);
   return (
     <S.Shop>
@@ -28,5 +28,5 @@ const Shop = ({ match, fetchCollectionsStartAsync }) => {
 
 export default connect(
   null,
-  { fetchCollectionsStartAsync }
+  { fetchCollectionsStart }
 )(Shop);

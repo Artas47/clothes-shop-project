@@ -1,23 +1,16 @@
 import React from "react";
 import * as S from "./sign-in.styles";
 import { reduxForm, Field } from "redux-form";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
-import { auth } from "../../firebase/firebase.utils";
 import formField from "../form-field/form-field";
 import { getUser } from "../../selectors/user.selector";
+import { googleSignInStart, emailSignInStart } from "../../actions/index";
 
 const SignIn = props => {
   const { handleSubmit } = props;
-  const onSubmit = async formValues => {
-    try {
-      await auth.signInWithEmailAndPassword(
-        formValues.email,
-        formValues.password
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = async (formValues, dispatch) => {
+    const { email, password } = formValues;
+    dispatch(emailSignInStart({ email, password }));
   };
   return (
     <S.SignIn>
@@ -34,7 +27,7 @@ const SignIn = props => {
         />
         <S.FormCustomButton type="submit"> Sign In </S.FormCustomButton>
       </S.StyledForm>
-      <S.FormCustomButton googleButton onClick={signInWithGoogle}>
+      <S.FormCustomButton googleButton onClick={props.googleSignInStart}>
         SIGN IN WITH GOOGLE
       </S.FormCustomButton>
     </S.SignIn>
@@ -56,7 +49,10 @@ const validate = formValues => {
   return errors;
 };
 
-export default connect(mapStateToProps)(
+export default connect(
+  mapStateToProps,
+  { googleSignInStart, emailSignInStart }
+)(
   reduxForm({
     form: "signIn",
     validate

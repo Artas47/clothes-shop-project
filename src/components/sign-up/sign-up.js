@@ -1,23 +1,15 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import * as S from "./sign-up.styles";
 import { connect } from "react-redux";
 import formField from "../form-field/form-field";
+import { signUpStart } from "../../actions/index";
 
 const SignUp = props => {
   const { handleSubmit } = props;
   const onSubmit = async formValues => {
-    const { displayName } = formValues;
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        formValues.email,
-        formValues.password
-      );
-      await createUserProfileDocument(user, { displayName });
-    } catch (error) {
-      console.log(error);
-    }
+    const { displayName, email, password } = formValues;
+    props.signUpStart({ displayName, email, password });
   };
   return (
     <S.SignUp>
@@ -66,7 +58,10 @@ const validate = formValues => {
   return errors;
 };
 
-export default connect()(
+export default connect(
+  null,
+  { signUpStart }
+)(
   reduxForm({
     form: "signUp",
     touchOnBlur: false,
