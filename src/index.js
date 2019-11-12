@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import createSagaMiddleware from "redux-saga";
+import {GlobalStyles} from './Global.styles';
 
 import rootSaga from "./sagas/root-saga";
 
@@ -25,7 +26,9 @@ sagaMiddleware.run(rootSaga);
 const persistor = persistStore(store);
 
 ReactDOM.render(
+  
   <Provider store={store}>
+    <GlobalStyles />
     <BrowserRouter>
       <PersistGate persistor={persistor}>
         <App />

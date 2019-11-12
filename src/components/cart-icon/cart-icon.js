@@ -19,7 +19,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { toggleCart }
-)(CartIcon);
+export default connect(mapStateToProps, { toggleCart })(CartIcon);

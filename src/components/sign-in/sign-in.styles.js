@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import CustomButton from "../custom-button/custom-button";
 
 export const SignIn = styled.div`

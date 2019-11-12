@@ -5,7 +5,6 @@ import Shop from "./pages/shop/shop";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import Checkout from "./pages/checkout/checkout";
 import { Route, Switch, Redirect } from "react-router-dom";
-import "./App.scss";
 import { connect } from "react-redux";
 import { getUser } from "./selectors/user.selector";
 import { getCartItems } from "./selectors/cart.selector";
@@ -48,7 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { checkUserSession }
-)(App);
+export default connect(mapStateToProps, { checkUserSession })(App);
