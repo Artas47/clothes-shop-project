@@ -6,7 +6,6 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import user from "./userReducer";
 import cart from "./cartReducer";
-import isLoading from "./loadingReducer";
 
 const persistConfig = {
   key: "root",
@@ -19,8 +18,7 @@ const rootReducer = combineReducers({
   shopData: shopData,
   form: formReducer,
   user: user,
-  cart: cart,
-  isLoading: isLoading
+  cart: cart
 });
 
 export default persistReducer(persistConfig, rootReducer);

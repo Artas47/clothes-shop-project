@@ -15,28 +15,20 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 62.5%;
     overflow-y: scroll;
     @media only screen and (max-width: 1200px) {
-        
           font-size: 50%;
-        
       }
   }
   body {
     font-family: "Open Sans Condensed", sans-serif;
     padding: 2rem 8rem;
     @media only screen and (max-width: 1200px) {
-      
         padding: 2rem 4rem;
-      
     }
     @media only screen and (max-width: 800px) {
-      
         padding: 1.5rem 2.5rem;
-      
     }
     @media only screen and (max-width: 700px) {
-      
         padding: 0 1rem;
-      
     }
   }
 `;

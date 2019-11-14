@@ -56,12 +56,6 @@ export const removeCartItem = item => {
   };
 };
 
-export const changeLoading = () => {
-  return {
-    type: "CHANGE_LOADING"
-  };
-};
-
 export const fetchCollectionsStart = () => {
   return {
     type: FETCH_COLLECTIONS_START
@@ -137,7 +131,10 @@ export const clearCartItems = () => {
 };
 
 export const signUpStart = formValues => {
-  return { type: SIGN_UP_START, payload: formValues };
+  return {
+    type: SIGN_UP_START,
+    payload: formValues
+  };
 };
 
 export const signUpSuccess = ({ user, additionalData }) => {
