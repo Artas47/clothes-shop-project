@@ -5,14 +5,16 @@ import CartItem from "../cart-item/cart-item";
 import { getCartItems } from "../../selectors/cart.selector";
 import { withRouter } from "react-router-dom";
 import { toggleCart } from "../../actions/index";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const CartDropdown = props => {
+const CartDropdown = ({ history }) => {
+  const cartItems = useSelector(getCartItems);
+  const dispatch = useDispatch();
   return (
     <S.CartDropdown>
       <S.CartItems>
-        {props.cartItems.length ? (
-          props.cartItems.map(item => {
+        {cartItems.length ? (
+          cartItems.map(item => {
             return (
               <CartItem
                 key={item.id}
@@ -28,10 +30,10 @@ const CartDropdown = props => {
         )}
       </S.CartItems>
       <CustomButton
-        disabled={props.cartItems.length ? false : true}
+        disabled={cartItems.length ? false : true}
         onClick={() => {
-          props.history.push("/checkout");
-          props.toggleCart();
+          history.push("/checkout");
+          dispatch(toggleCart());
         }}
         style={{ marginTop: "auto" }}
       >
@@ -41,13 +43,4 @@ const CartDropdown = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return { cartItems: getCartItems(state) };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { toggleCart }
-  )(CartDropdown)
-);
+export default withRouter(CartDropdown);

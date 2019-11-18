@@ -16,16 +16,6 @@ const CollectionPreview = ({ title, items }) => {
         })}
       </S.Preview>
     </S.CollectionPreview>
-    // <div>
-    //   {items.map(item => {
-    //     return (
-    //       <div>
-    //         {item.name}
-    //         <img src={item.imageUrl} />
-    //       </div>
-    //     );
-    //   })}
-    // </div>
   );
 };
 

@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./cart-item.styles";
 
-const CartItem = props => {
+const CartItem = ({ imageUrl, name, quantity, price }) => {
   return (
     <S.CartItem>
-      <S.CartImg src={props.imageUrl} />
+      <S.CartImg src={imageUrl} />
       <S.CartResume>
-        {props.name} <br />
-        {props.quantity} x {props.price}$
+        {name} <br />
+        {quantity} x {price}$
       </S.CartResume>
     </S.CartItem>
   );

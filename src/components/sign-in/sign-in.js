@@ -1,12 +1,12 @@
 import React from "react";
 import * as S from "./sign-in.styles";
 import { reduxForm, Field } from "redux-form";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import formField from "../form-field/form-field";
-import { getUser } from "../../selectors/user.selector";
 import { googleSignInStart, emailSignInStart } from "../../actions/index";
 
 const SignIn = props => {
+  const dispatch = useDispatch();
   const { handleSubmit } = props;
   const onSubmit = async (formValues, dispatch) => {
     const { email, password } = formValues;
@@ -27,15 +27,16 @@ const SignIn = props => {
         />
         <S.FormCustomButton type="submit"> Sign In </S.FormCustomButton>
       </S.StyledForm>
-      <S.FormCustomButton googleButton onClick={props.googleSignInStart}>
+      <S.FormCustomButton
+        googleButton
+        onClick={() => {
+          dispatch(googleSignInStart());
+        }}
+      >
         SIGN IN WITH GOOGLE
       </S.FormCustomButton>
     </S.SignIn>
   );
-};
-
-const mapStateToProps = state => {
-  return { user: getUser(state) };
 };
 
 const validate = formValues => {
@@ -49,12 +50,7 @@ const validate = formValues => {
   return errors;
 };
 
-export default connect(
-  mapStateToProps,
-  { googleSignInStart, emailSignInStart }
-)(
-  reduxForm({
-    form: "signIn",
-    validate
-  })(SignIn)
-);
+export default reduxForm({
+  form: "signIn",
+  validate
+})(SignIn);

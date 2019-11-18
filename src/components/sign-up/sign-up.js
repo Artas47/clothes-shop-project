@@ -1,15 +1,16 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 import * as S from "./sign-up.styles";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import formField from "../form-field/form-field";
 import { signUpStart } from "../../actions/index";
 
 const SignUp = props => {
+  const dispatch = useDispatch();
   const { handleSubmit } = props;
   const onSubmit = async formValues => {
     const { displayName, email, password } = formValues;
-    props.signUpStart({ displayName, email, password });
+    dispatch(signUpStart({ displayName, email, password }));
   };
   return (
     <S.SignUp>
@@ -58,13 +59,8 @@ const validate = formValues => {
   return errors;
 };
 
-export default connect(
-  null,
-  { signUpStart }
-)(
-  reduxForm({
-    form: "signUp",
-    touchOnBlur: false,
-    validate: validate
-  })(SignUp)
-);
+export default reduxForm({
+  form: "signUp",
+  touchOnBlur: false,
+  validate: validate
+})(SignUp);

@@ -1,13 +1,16 @@
 import React from "react";
 import * as S from "./header.styles";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
 import { getUser } from "../../selectors/user.selector";
 import { getCartHidden } from "../../selectors/cart.selector";
 import { signOutStart } from "../../actions/index";
 
-const Header = props => {
+const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const cartHidden = useSelector(getCartHidden);
   return (
     <S.Header>
       <S.StyledLink style={{ marginRight: "auto" }} to="/">
@@ -15,11 +18,11 @@ const Header = props => {
       </S.StyledLink>
       <S.StyledLink to="/shop">SHOP</S.StyledLink>
       <S.StyledLink to="/contact">CONTACT</S.StyledLink>
-      {props.user.currentUser ? (
+      {user.currentUser ? (
         <S.StyledLink
           to="#"
           onClick={() => {
-            props.signOutStart();
+            dispatch(signOutStart());
           }}
         >
           SIGN OUT
@@ -28,16 +31,9 @@ const Header = props => {
         <S.StyledLink to={"/signin"}>SIGN IN</S.StyledLink>
       )}
       <CartIcon />
-      {props.cartHidden ? <CartDropdown /> : ""}
+      {cartHidden ? <CartDropdown /> : ""}
     </S.Header>
   );
 };
 
-const mapStateToProps = state => {
-  return { user: getUser(state), cartHidden: getCartHidden(state) };
-};
-
-export default connect(
-  mapStateToProps,
-  { signOutStart }
-)(Header);
+export default Header;
