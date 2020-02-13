@@ -1,3 +1,6 @@
+Clothes-shop is an e-commerce app that allows us to "buy" clothes. It uses react + redux, react-router, styled-components, redux-persist, reselect, firestore, react-stripe (for payments), redux-form.
+
+
 LIVE DEMO: https://clothes-shop--live.herokuapp.com/
 
 
